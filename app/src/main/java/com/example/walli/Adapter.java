@@ -1,6 +1,7 @@
 package com.example.walli;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,8 +33,15 @@ public class Adapter extends RecyclerView.Adapter<Holder>{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Holder holder, int position) {
+    public void onBindViewHolder(@NonNull Holder holder, final int position) {
         Glide.with(context).load(wallpaperList.get(position).getMediumURL()).into(holder.imageView);
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                context.startActivity(new Intent(context,FullScreenWallpaper.class).putExtra("originalURL",wallpaperList.get(position).getOriginalURL()));
+
+            }
+        });
     }
 
     @Override

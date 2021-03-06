@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.AbsListView;
 
 import com.android.volley.AuthFailureError;
@@ -103,10 +104,11 @@ public class MainActivity extends AppCompatActivity {
 
                                 Model model = new Model(id,originalURL,mediumURL);
                                 wallpaperList.add(model);
-                                pageNumber++;
+
                             }
 
                             adapter.notifyDataSetChanged();
+                            pageNumber++;
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -133,5 +135,10 @@ public class MainActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(request);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
     }
 }
